@@ -12,6 +12,7 @@ setup(
     install_requires=[
         # NB: Pin these to a more specific version for tap reliability
         "pandas",
+        "pymongo",
     ],
     entry_points="""
     [console_scripts]
