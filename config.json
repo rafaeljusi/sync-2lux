@@ -1,0 +1,4 @@
+{
+  "connection_string": "mongodb://localhost:27017/",
+  "database_name": "2lux"
+}
