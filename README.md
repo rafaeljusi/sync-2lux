@@ -83,4 +83,7 @@ Writing products to DB...
 Finished => records: 20000. time elapsed: 62s. ~323 records per second
 ```
 
+### sample result record
+![image](https://user-images.githubusercontent.com/16124120/224513157-5bd68632-9647-4c94-a0c9-f237c494090d.png)
+
 ---
