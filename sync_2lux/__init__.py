@@ -42,6 +42,7 @@ def getProducts():
 
     dataset=pd.read_csv(config["source_file"], encoding= 'unicode_escape', engine='python', header=0, names=config["headers"], dtype=config["dtypes"], parse_dates=config["parse_dates"])
 
+    dataset['product_rating'] = dataset['product_rating'].apply(pd.to_numeric, errors='coerce')
     dataset = dataset.replace({np.nan: None})
     dataset['brand'] = dataset['brand'].apply(lambda x: x.upper() if isinstance(x, str) else None);
     dataset['image'] = dataset['image'].apply(lambda x: ast.literal_eval(x) if isinstance(x, str) else None);
@@ -85,4 +86,4 @@ def main():
     timeElapsed = end - start
     recordCount = len(products)
 
-    print(f'Finished. Records: {recordCount}. Time elapsed: {timeElapsed}. ~{recordCount / timeElapsed:.0f} records per second')
+    print(f'Finished => records: {recordCount}. time elapsed: {timeElapsed:.0f}s. ~{recordCount / timeElapsed:.0f} records per second')

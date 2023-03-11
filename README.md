@@ -10,7 +10,7 @@ This aoo:
 
 ## setup
 
-1. Install the app `pip install -e .`
+1. Install the app `pip install .`
 
 2. Verify and modify (if needed) the default config file (config.json)
 
@@ -64,8 +64,16 @@ This aoo:
 }
 ```
 
-## Run
+## run
 
-`tap-exactsales --config tap_config.json --catalog catalog.json | target-stitch --config target_config.json >> state.json`
+`sync-2lux`
+
+### sample output
+
+```
+Reading products from file...
+Writing products to DB...
+Finished => records: 20000. time elapsed: 62s. ~323 records per second
+```
 
 ---
