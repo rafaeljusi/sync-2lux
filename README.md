@@ -8,9 +8,16 @@ This aoo:
 - Process the data to validate and normalize it
 - Outputs the result to the database
 
+## requirements
+
+- Python 3 (https://www.python.org/downloads)
+- MongoDB
+  - Docker (https://hub.docker.com/_/mongo) or
+  - Manual Installation (https://www.mongodb.com/docs/manual/installation/)
+
 ## setup
 
-1. Install the app `pip install .`
+1. Install the app: in the terminal go to project folder and run `pip install .`
 
 2. Verify and modify (if needed) the default config file (config.json)
 
@@ -66,7 +73,7 @@ This aoo:
 
 ## run
 
-`sync-2lux`
+just run `sync-2lux` 
 
 ### sample output
 
