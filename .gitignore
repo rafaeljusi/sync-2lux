@@ -1,2 +1,3 @@
 build/*
 sync_2lux/__pycache__/*
+state.json

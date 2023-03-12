@@ -1,6 +1,7 @@
 import ast
+from datetime import date, datetime
 import json
-import math
+import os
 import time
 import numpy as np
 import pandas as pd
@@ -70,7 +71,31 @@ def writeRecordsToDB(dataset, collection):
         if (len(operations) > 0):
             collection.bulk_write(operations,ordered=False)
 
+def saveState():
+    state = getState()
+
+    state["last_sync"] = date.today().strftime('%Y-%m-%d')
+
+    with open('state.json', 'w') as state_file:
+            state_file.write(json.dumps(state))
+
+def getState():
+    state = {}
+
+    if os.path.exists('state.json') and os.path.getsize('state.json') > 0:
+        with open('state.json') as state_file:
+            state = json.load(state_file)
+            state['last_sync'] = datetime.strptime(state['last_sync'], '%Y-%m-%d').date()
+
+    return state
+
 def main():
+    state = getState()
+    
+    if(state.get('last_sync') != None and state["last_sync"] >= date.today()):
+        print(f'Last sync: {state["last_sync"]}. Sync skipped')
+        quit()
+
     db = getDBClient()
 
     start = time.time()
@@ -85,5 +110,7 @@ def main():
     end = time.time()
     timeElapsed = end - start
     recordCount = len(products)
+
+    saveState()
 
     print(f'Finished => records: {recordCount}. time elapsed: {timeElapsed:.0f}s. ~{recordCount / timeElapsed:.0f} records per second')
